@@ -18,18 +18,16 @@ public class MainActivity extends AppCompatActivity {
     public void onSignIn(View view) {
         EditText username = findViewById(R.id.et_username);
         EditText password = findViewById(R.id.et_password);
-        Log.w("test", "onSignIn");
+        Intent intent = new Intent(this, ResultActivity.class);
 
         if ("admin".equals(username.getText().toString()) &&
             "password".equals(password.getText().toString())
         ){
-            Intent intent = new Intent(this, ResultActivity.class);
             intent.putExtra("RESULT", "Success!!!");
-            startActivity(intent);
-            Log.w("test", "success");
 
         } else {
-            Log.w("test", username.getText().toString() + ":" + password.getText().toString());
+            intent.putExtra("RESULT", "Failure!?");
         }
+        startActivity(intent);
     }
 }

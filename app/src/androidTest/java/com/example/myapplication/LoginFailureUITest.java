@@ -7,7 +7,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Collection;
 
@@ -20,17 +19,11 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static java.util.Arrays.asList;
 
-
-public class MainActivityTest {
+public class LoginFailureUITest {
 
     @Rule
     public ActivityTestRule<MainActivity> activityRule =
             new ActivityTestRule<>(MainActivity.class);
-
-    private String username;
-    private String password;
-    private String result;
-
 
     @Test
     public void open_main_page() {
@@ -40,11 +33,11 @@ public class MainActivityTest {
 
         // 2.Act (When)
         onView(withId(R.id.et_username)).perform(replaceText("admin"), closeSoftKeyboard());
-        onView(withId(R.id.et_password)).perform(replaceText("password"), closeSoftKeyboard());
+        onView(withId(R.id.et_password)).perform(replaceText("passwor"), closeSoftKeyboard());
         onView(withId(R.id.btn_signin)).perform(click());
 
         // 3.Assert (Then)
-        onView(withId(R.id.tv_result)).check(matches(withText("Success!!!")));
+        onView(withId(R.id.tv_result)).check(matches(withText("Failure!?")));
 
     }
 }
